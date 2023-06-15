@@ -14,10 +14,10 @@ describe('AppModule', () => {
     });
   });
 
-  describe('When the foo is called', () => {
+  describe('When process all file', () => {
     let output: GameStats;
-    before(() => {
-      output = app.parseLogFile('src/assets/qgames.log');
+    before(async () => {
+      output = await app.parseLogFile('src/assets/qgames.log');
     });
 
     it('should return expected value', async () => {
@@ -630,6 +630,17 @@ describe('AppModule', () => {
           kills_by_means: {},
         },
       });
+    });
+  });
+
+  describe('When file has two games', () => {
+    let output: GameStats;
+    before(async () => {
+      output = await app.parseLogFile('src/assets/count-two-games.log');
+    });
+
+    it('should expect count equal 2 games', async () => {
+      expect(Object.keys(output).length).to.be.eql(2);
     });
   });
 });
