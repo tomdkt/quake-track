@@ -42,6 +42,37 @@ describe('AppModule', () => {
     });
   });
 
+  describe('user name change functionality', () => {
+    const inputFile = 'src/assets/user-change-name.log';
+    let output: GameStats;
+
+    before(async () => {
+      output = await app.parseLogFile(inputFile);
+    });
+
+    it('should expect some values', async () => {
+      expect(output).to.be.eql({
+        game_1: {
+          total_kills: 11,
+          players: ['Isgalamido', 'Dono da Bola'],
+          playerNames: {
+            '2': 'Isgalamido',
+            '3': 'Dono da Bola',
+          },
+          kills: {
+            Isgalamido: -9,
+            'Dono da Bola': 0,
+          },
+          kills_by_means: {
+            MOD_TRIGGER_HURT: 7,
+            MOD_ROCKET_SPLASH: 3,
+            MOD_FALLING: 1,
+          },
+        },
+      });
+    });
+  });
+
   describe('When meansOfDeathBase', () => {
     it('should be MOD_TRIGGER_HURT when 22', async () => {
       expect(DeathCausesArray[22]).to.be.eql('MOD_TRIGGER_HURT');
