@@ -521,7 +521,6 @@ describe('AppModule', () => {
         game_1: {
           total_kills: 3,
           players: ['Isgalamido'],
-          playersIds: ['2'],
           playerNames: {
             '2': 'Isgalamido',
           },

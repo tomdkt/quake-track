@@ -37,7 +37,6 @@ export const DeathCausesArray = Object.values(DeathCauses);
 
 interface PlayerStats {
   total_kills: number;
-  playersIds: string[];
   players: string[];
   playerNames: Record<string, string>;
   kills: Record<string, number>;
@@ -69,8 +68,7 @@ export class ParseLogController {
         const playerId = trimmedLine.split(' ')[2];
         const playerInfo = trimmedLine.split('n\\')[1];
         const playerName = playerInfo.split('\\')[0];
-        if (!playerStats.playersIds.includes(playerId)) {
-          playerStats.playersIds.push(playerId);
+        if (!playerStats.playerNames[playerId]) {
           playerStats.players.push(playerName);
           playerStats.playerNames[playerId] = playerName;
           playerStats.kills[playerName] = 0;
@@ -108,7 +106,6 @@ export class ParseLogController {
     return {
       total_kills: 0,
       players: [],
-      playersIds: [],
       playerNames: {} as Record<string, string>,
       kills: {} as Record<string, number>,
       kills_by_means: {} as Record<DeathCauses, number>,
