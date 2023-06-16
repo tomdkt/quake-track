@@ -39,6 +39,7 @@ interface PlayerStats {
   total_kills: number;
   playersIds: string[];
   players: string[];
+  playerNames: Record<string, string>;
   kills: Record<string, number>;
   kills_by_means: Record<DeathCauses, number>;
 }
@@ -58,7 +59,7 @@ export class ParseLogController {
     for await (const line of rl) {
       const trimmedLine = line.trim();
 
-      if (trimmedLine.startsWith('InitGame:')) {
+      if (trimmedLine.includes('InitGame:')) {
         if (gameCounter > 0) {
           gameStats[`game_${gameCounter}`] = playerStats;
           playerStats = this.initializePlayerStats();
@@ -71,18 +72,22 @@ export class ParseLogController {
         if (!playerStats.playersIds.includes(playerId)) {
           playerStats.playersIds.push(playerId);
           playerStats.players.push(playerName);
+          playerStats.playerNames[playerId] = playerName;
           playerStats.kills[playerName] = 0;
         }
       } else if (trimmedLine.includes('Kill:')) {
         const segments = trimmedLine.split(':');
+        const killerId = segments[2].trim().split(' ')[0];
+        const deadPlayerId = segments[2].trim().split(' ')[1];
         const killer = segments[3].split('killed')[0].trim();
+        const killerName = playerStats.playerNames[killerId];
         const deathCause = segments[3].split('by')[1].trim() as DeathCauses;
         playerStats.total_kills += 1;
-        if (killer !== '<world>') {
-          playerStats.kills[killer] += 1;
+        if (killer !== '<world>' && killerId !== deadPlayerId) {
+          playerStats.kills[killerName] += 1;
         } else {
-          const deadPlayer = segments[3].split('killed')[1].split('by')[0].trim();
-          playerStats.kills[deadPlayer] -= 1;
+          const deadPlayerName = playerStats.playerNames[deadPlayerId];
+          playerStats.kills[deadPlayerName] -= 1;
         }
         if (!playerStats.kills_by_means[deathCause]) {
           playerStats.kills_by_means[deathCause] = 0;
@@ -102,8 +107,9 @@ export class ParseLogController {
   private initializePlayerStats(): PlayerStats {
     return {
       total_kills: 0,
-      playersIds: [],
       players: [],
+      playersIds: [],
+      playerNames: {} as Record<string, string>,
       kills: {} as Record<string, number>,
       kills_by_means: {} as Record<DeathCauses, number>,
     };
