@@ -37,6 +37,7 @@ export const DeathCausesArray = Object.values(DeathCauses);
 
 interface PlayerStats {
   total_kills: number;
+  playersIds: string[];
   players: string[];
   kills: Record<string, number>;
   kills_by_means: Record<DeathCauses, number>;
@@ -55,21 +56,25 @@ export class ParseLogController {
     let playerStats: PlayerStats = this.initializePlayerStats();
 
     for await (const line of rl) {
-      if (line.includes('InitGame:')) {
+      const trimmedLine = line.trim();
+
+      if (trimmedLine.startsWith('InitGame:')) {
         if (gameCounter > 0) {
           gameStats[`game_${gameCounter}`] = playerStats;
+          playerStats = this.initializePlayerStats();
         }
-        playerStats = this.initializePlayerStats();
         gameCounter += 1;
-      } else if (line.includes('ClientUserinfoChanged:')) {
-        const playerInfo = line.split('n\\')[1];
+      } else if (trimmedLine.includes('ClientUserinfoChanged:')) {
+        const playerId = trimmedLine.split(' ')[2];
+        const playerInfo = trimmedLine.split('n\\')[1];
         const playerName = playerInfo.split('\\')[0];
-        if (!playerStats.players.includes(playerName)) {
+        if (!playerStats.playersIds.includes(playerId)) {
+          playerStats.playersIds.push(playerId);
           playerStats.players.push(playerName);
           playerStats.kills[playerName] = 0;
         }
-      } else if (line.includes('Kill:')) {
-        const segments = line.split(':');
+      } else if (trimmedLine.includes('Kill:')) {
+        const segments = trimmedLine.split(':');
         const killer = segments[3].split('killed')[0].trim();
         const deathCause = segments[3].split('by')[1].trim() as DeathCauses;
         playerStats.total_kills += 1;
@@ -85,7 +90,11 @@ export class ParseLogController {
         playerStats.kills_by_means[deathCause] += 1;
       }
     }
-    gameStats[`game_${gameCounter}`] = playerStats;
+
+    // Save the last game stats
+    if (gameCounter > 0) {
+      gameStats[`game_${gameCounter}`] = playerStats;
+    }
 
     return gameStats;
   }
@@ -93,12 +102,10 @@ export class ParseLogController {
   private initializePlayerStats(): PlayerStats {
     return {
       total_kills: 0,
+      playersIds: [],
       players: [],
       kills: {} as Record<string, number>,
       kills_by_means: {} as Record<DeathCauses, number>,
     };
   }
 }
-/*
-const gameStats = parseLogFile('src/assets/qgames.log');
-console.log(gameStats);*/
