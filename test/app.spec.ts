@@ -1,25 +1,26 @@
 import { expect } from 'chai';
 import { DeathCausesArray, GameStats, ParseLogController } from '../src/app';
 
-describe('AppModule', () => {
+describe('ParseLogController', () => {
+  const baseFolder = 'src/assets';
   let app: ParseLogController;
 
   before(() => {
     app = new ParseLogController();
   });
 
-  describe('when the module is started', () => {
+  describe('when the ParseLogController is started', () => {
     it('should be defined and ok', () => {
       expect(app).to.be.ok;
     });
   });
 
   describe('when the user kill himself', () => {
-    const inputFile = 'src/assets/kill-himself.log';
+    const inputFile = 'kill-himself.log';
     let output: GameStats;
 
     before(async () => {
-      output = await app.parseLogFile(inputFile);
+      output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
     });
 
     it('should expect some values', async () => {
@@ -42,31 +43,163 @@ describe('AppModule', () => {
     });
   });
 
-  describe('user name change functionality', () => {
-    const inputFile = 'src/assets/user-change-name.log';
+  describe('when the file has one game', () => {
+    describe('user name change functionality', () => {
+      const inputFile = 'user-change-name.log';
+      let output: GameStats;
+
+      before(async () => {
+        output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
+      });
+
+      it('should expect some values', async () => {
+        expect(output).to.be.eql({
+          game_1: {
+            total_kills: 11,
+            players: ['Isgalamido', 'Dono da Bola'],
+            playerNames: {
+              '2': 'Isgalamido',
+              '3': 'Dono da Bola',
+            },
+            kills: {
+              Isgalamido: -9,
+              'Dono da Bola': 0,
+            },
+            kills_by_means: {
+              MOD_TRIGGER_HURT: 7,
+              MOD_ROCKET_SPLASH: 3,
+              MOD_FALLING: 1,
+            },
+          },
+        });
+      });
+    });
+
+    describe('one regular game multiplayer', () => {
+      const inputFile = 'one-game-multiplayer.log';
+      let output: GameStats;
+
+      before(async () => {
+        output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
+      });
+
+      it('should expect some values', async () => {
+        expect(output).to.be.eql({
+          game_1: {
+            total_kills: 4,
+            players: ['Dono da Bola', 'Isgalamido', 'Zeh'],
+            playerNames: {
+              '2': 'Dono da Bola',
+              '3': 'Isgalamido',
+              '4': 'Zeh',
+            },
+            kills: {
+              'Dono da Bola': -1,
+              Isgalamido: 1,
+              Zeh: -2,
+            },
+            kills_by_means: {
+              MOD_ROCKET: 1,
+              MOD_TRIGGER_HURT: 2,
+              MOD_FALLING: 1,
+            },
+          },
+        });
+      });
+    });
+
+    describe('second regular game multiplayer', () => {
+      const inputFile = 'second-game-multiplayer.log';
+      let output: GameStats;
+
+      before(async () => {
+        output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
+      });
+
+      it('should expect some values', async () => {
+        expect(output).to.be.eql({
+          game_1: {
+            total_kills: 105,
+            players: ['Dono da Bola', 'Isgalamido', 'Zeh', 'Assasinu Credi'],
+            playerNames: {
+              '2': 'Dono da Bola',
+              '3': 'Isgalamido',
+              '4': 'Zeh',
+              '5': 'Assasinu Credi',
+            },
+            kills: {
+              'Dono da Bola': 5,
+              Isgalamido: 19,
+              Zeh: 20,
+              'Assasinu Credi': 11,
+            },
+            kills_by_means: {
+              MOD_TRIGGER_HURT: 9,
+              MOD_FALLING: 11,
+              MOD_ROCKET: 20,
+              MOD_RAILGUN: 8,
+              MOD_ROCKET_SPLASH: 51,
+              MOD_MACHINEGUN: 4,
+              MOD_SHOTGUN: 2,
+            },
+          },
+        });
+      });
+    });
+  });
+
+  describe('when the file has two games', () => {
+    const inputFile = 'two-games-same-file.log';
     let output: GameStats;
 
     before(async () => {
-      output = await app.parseLogFile(inputFile);
+      output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
     });
 
     it('should expect some values', async () => {
       expect(output).to.be.eql({
         game_1: {
-          total_kills: 11,
-          players: ['Isgalamido', 'Dono da Bola'],
+          total_kills: 4,
+          players: ['Dono da Bola', 'Isgalamido', 'Zeh'],
           playerNames: {
-            '2': 'Isgalamido',
-            '3': 'Dono da Bola',
+            '2': 'Dono da Bola',
+            '3': 'Isgalamido',
+            '4': 'Zeh',
           },
           kills: {
-            Isgalamido: -9,
-            'Dono da Bola': 0,
+            'Dono da Bola': -1,
+            Isgalamido: 1,
+            Zeh: -2,
           },
           kills_by_means: {
-            MOD_TRIGGER_HURT: 7,
-            MOD_ROCKET_SPLASH: 3,
+            MOD_ROCKET: 1,
+            MOD_TRIGGER_HURT: 2,
             MOD_FALLING: 1,
+          },
+        },
+        game_2: {
+          total_kills: 105,
+          players: ['Dono da Bola', 'Isgalamido', 'Zeh', 'Assasinu Credi'],
+          playerNames: {
+            '2': 'Dono da Bola',
+            '3': 'Isgalamido',
+            '4': 'Zeh',
+            '5': 'Assasinu Credi',
+          },
+          kills: {
+            'Dono da Bola': 5,
+            Isgalamido: 19,
+            Zeh: 20,
+            'Assasinu Credi': 11,
+          },
+          kills_by_means: {
+            MOD_TRIGGER_HURT: 9,
+            MOD_FALLING: 11,
+            MOD_ROCKET: 20,
+            MOD_RAILGUN: 8,
+            MOD_ROCKET_SPLASH: 51,
+            MOD_MACHINEGUN: 4,
+            MOD_SHOTGUN: 2,
           },
         },
       });
