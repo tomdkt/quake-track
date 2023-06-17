@@ -62,5 +62,11 @@ module.exports = {
         'no-return-await': 'off', // to avoid conflicts with @typescript-eslint/return-await
       },
     },
+    {
+      files: ['**/*.test.ts', '**/*.spec.ts'],
+      rules: {
+        'sonarjs/no-duplicate-string': 'error',
+      },
+    },
   ],
 };
