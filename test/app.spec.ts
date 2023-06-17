@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { DeathCausesArray, GameStats, ParseLogController } from '../src/app';
 import {
   expectedFileWithOneGameAnotherRound,
-  expectedFileWithOneGameOneRound,
-  expectedFileWithTwoGames,
+  expectedTheFileContainsOneGame,
+  expectedTheFileContainsTwoGames,
   expectedOnFullFileProcessing,
 } from './fixture/qgames.fixture';
 
@@ -65,40 +65,40 @@ describe('ParseLogController', () => {
       });
     });
 
-    describe('when file contains one game', () => {
-      describe('user name change functionality', () => {
-        const inputFile = 'user-change-name.log';
-        let output: GameStats;
+    describe('when the user name is changed', () => {
+      const inputFile = 'user-name-changed.log';
+      let output: GameStats;
 
-        before(async () => {
-          output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
-        });
-
-        it(shouldExpectSpecificValues, async () => {
-          expect(output).to.be.eql({
-            game_1: {
-              total_kills: 11,
-              players: ['Isgalamido', 'Dono da Bola'],
-              playerNames: {
-                '2': 'Isgalamido',
-                '3': 'Dono da Bola',
-              },
-              kills: {
-                Isgalamido: -9,
-                'Dono da Bola': 0,
-              },
-              kills_by_means: {
-                MOD_TRIGGER_HURT: 7,
-                MOD_ROCKET_SPLASH: 3,
-                MOD_FALLING: 1,
-              },
-            },
-          });
-        });
+      before(async () => {
+        output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
       });
 
+      it(shouldExpectSpecificValues, async () => {
+        expect(output).to.be.eql({
+          game_1: {
+            total_kills: 11,
+            players: ['Isgalamido', 'Dono da Bola'],
+            playerNames: {
+              '2': 'Isgalamido',
+              '3': 'Dono da Bola',
+            },
+            kills: {
+              Isgalamido: -9,
+              'Dono da Bola': 0,
+            },
+            kills_by_means: {
+              MOD_TRIGGER_HURT: 7,
+              MOD_ROCKET_SPLASH: 3,
+              MOD_FALLING: 1,
+            },
+          },
+        });
+      });
+    });
+
+    describe('when the file contains one game', () => {
       describe('one round', () => {
-        const inputFile = 'input-file-with-one-game-one-round.log';
+        const inputFile = 'one-game-one-round.log';
         let output: GameStats;
 
         before(async () => {
@@ -106,12 +106,12 @@ describe('ParseLogController', () => {
         });
 
         it(shouldExpectSpecificValues, async () => {
-          expect(output).to.be.eql(expectedFileWithOneGameOneRound);
+          expect(output).to.be.eql(expectedTheFileContainsOneGame);
         });
       });
 
       describe('another round', () => {
-        const inputFile = 'input-file-with-one-game-another-round.log';
+        const inputFile = 'one-game-another-round.log';
         let output: GameStats;
 
         before(async () => {
@@ -124,8 +124,8 @@ describe('ParseLogController', () => {
       });
     });
 
-    describe('when the file has two games', () => {
-      const inputFile = 'two-games-same-file.log';
+    describe('when the file contains two games', () => {
+      const inputFile = 'two-games-on-same-file.log';
       let output: GameStats;
 
       before(async () => {
@@ -133,7 +133,7 @@ describe('ParseLogController', () => {
       });
 
       it(shouldExpectSpecificValues, async () => {
-        expect(output).to.be.eql(expectedFileWithTwoGames);
+        expect(output).to.be.eql(expectedTheFileContainsTwoGames);
       });
     });
   });

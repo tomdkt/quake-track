@@ -510,7 +510,7 @@ export const expectedOnFullFileProcessing = {
   },
 };
 
-export const expectedFileWithOneGameOneRound = {
+export const expectedTheFileContainsOneGame = {
   game_1: {
     total_kills: 4,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh'],
@@ -560,7 +560,7 @@ export const expectedFileWithOneGameAnotherRound = {
   },
 };
 
-export const expectedFileWithTwoGames = {
+export const expectedTheFileContainsTwoGames = {
   game_1: {
     total_kills: 4,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh'],
