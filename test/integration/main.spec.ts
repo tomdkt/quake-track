@@ -9,15 +9,13 @@ import {
 } from '../fixture/expected-data';
 import { GameStats } from '../../src/interfaces/game-stats';
 import { Main } from '../../src/main';
-import { ParseLogController } from '../../src/controller/parse-log-controller';
 
 describe('Main', () => {
   const baseFolder = 'src/assets';
   let app: Main;
 
   before(() => {
-    const parseLogController = new ParseLogController();
-    app = new Main(parseLogController);
+    app = new Main();
   });
 
   describe('when the app is started', () => {
