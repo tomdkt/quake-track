@@ -7,6 +7,6 @@ export class Main {
   ) {}
 
   public async run(filename: string): Promise<GameStats> {
-    return this.parseLogController.parseLogFile(filename);
+    return this.parseLogController.parseFileReader(filename);
   }
 }

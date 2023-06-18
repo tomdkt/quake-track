@@ -10,10 +10,6 @@ export class GameRepository {
     this.gameCounter += 1;
   }
 
-  public getGameCounter(): number {
-    return this.gameCounter;
-  }
-
   public getPlayerStats(): PlayerStats {
     return this.gameStats[`game_${this.gameCounter}`];
   }
