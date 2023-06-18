@@ -1,11 +1,12 @@
 import { expect } from 'chai';
-import { DeathCausesArray, GameStats, ParseLogController } from '../../src/app';
+import { ParseLogController } from '../../src/main';
 import {
   expectedFileWithOneGameAnotherRound,
   expectedTheFileContainsOneGame,
   expectedTheFileContainsTwoGames,
   expectedOnFullFileProcessing,
 } from '../fixture/expected-data';
+import { GameStats } from '../../src/interfaces/game-stats';
 
 describe('ParseLogController', () => {
   const baseFolder = 'src/assets';
@@ -135,20 +136,6 @@ describe('ParseLogController', () => {
       it(shouldExpectSpecificValues, async () => {
         expect(output).to.be.eql(expectedTheFileContainsTwoGames);
       });
-    });
-  });
-
-  describe('when meansOfDeathBase', () => {
-    it('should be MOD_TRIGGER_HURT when 22', async () => {
-      expect(DeathCausesArray[22]).to.be.eql('MOD_TRIGGER_HURT');
-    });
-
-    it('should be MOD_RAILGUN when 10', async () => {
-      expect(DeathCausesArray[10]).to.be.eql('MOD_RAILGUN');
-    });
-
-    it('should be MOD_ROCKET when 6', async () => {
-      expect(DeathCausesArray[6]).to.be.eql('MOD_ROCKET');
     });
   });
 });
