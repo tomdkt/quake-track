@@ -1,5 +1,52 @@
 export const expectedOnFullFileProcessing = {
   game_1: {
+    total_kills: 0,
+    players: ['Isgalamido'],
+    playerNames: {
+      '2': 'Isgalamido',
+    },
+    kills: {
+      Isgalamido: 0,
+    },
+    kills_by_means: {},
+  },
+  game_2: {
+    total_kills: 11,
+    players: ['Isgalamido', 'Dono da Bola'],
+    playerNames: {
+      '2': 'Isgalamido',
+      '3': 'Dono da Bola',
+    },
+    kills: {
+      Isgalamido: -9,
+      'Dono da Bola': 0,
+    },
+    kills_by_means: {
+      MOD_TRIGGER_HURT: 7,
+      MOD_ROCKET_SPLASH: 3,
+      MOD_FALLING: 1,
+    },
+  },
+  game_3: {
+    total_kills: 4,
+    players: ['Dono da Bola', 'Isgalamido', 'Zeh'],
+    playerNames: {
+      '2': 'Dono da Bola',
+      '3': 'Isgalamido',
+      '4': 'Zeh',
+    },
+    kills: {
+      'Dono da Bola': -1,
+      Isgalamido: 1,
+      Zeh: -2,
+    },
+    kills_by_means: {
+      MOD_ROCKET: 1,
+      MOD_TRIGGER_HURT: 2,
+      MOD_FALLING: 1,
+    },
+  },
+  game_4: {
     total_kills: 105,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh', 'Assasinu Credi'],
     playerNames: {
@@ -24,7 +71,7 @@ export const expectedOnFullFileProcessing = {
       MOD_SHOTGUN: 2,
     },
   },
-  game_2: {
+  game_5: {
     total_kills: 14,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh', 'Assasinu Credi'],
     playerNames: {
@@ -46,7 +93,7 @@ export const expectedOnFullFileProcessing = {
       MOD_RAILGUN: 1,
     },
   },
-  game_3: {
+  game_6: {
     total_kills: 29,
     players: [
       'Fasano Agai',
@@ -82,7 +129,7 @@ export const expectedOnFullFileProcessing = {
       MOD_MACHINEGUN: 1,
     },
   },
-  game_4: {
+  game_7: {
     total_kills: 130,
     players: ['Oootsimo', 'Isgalamido', 'Zeh', 'Dono da Bola', 'Mal', 'Assasinu Credi', 'Chessus!'],
     playerNames: {
@@ -113,7 +160,7 @@ export const expectedOnFullFileProcessing = {
       MOD_MACHINEGUN: 9,
     },
   },
-  game_5: {
+  game_8: {
     total_kills: 89,
     players: ['Oootsimo', 'Isgalamido', 'Zeh', 'Dono da Bola', 'Mal', 'Assasinu Credi'],
     playerNames: {
@@ -142,7 +189,7 @@ export const expectedOnFullFileProcessing = {
       MOD_SHOTGUN: 1,
     },
   },
-  game_6: {
+  game_9: {
     total_kills: 67,
     players: ['Oootsimo', 'Isgalamido', 'Zeh', 'Dono da Bola', 'Mal', 'Assasinu Credi'],
     playerNames: {
@@ -171,7 +218,7 @@ export const expectedOnFullFileProcessing = {
       MOD_RAILGUN: 10,
     },
   },
-  game_7: {
+  game_10: {
     total_kills: 60,
     players: ['Oootsimo', 'Dono da Bola', 'Zeh', 'Chessus', 'Mal', 'Assasinu Credi', 'Isgalamido'],
     playerNames: {
@@ -204,7 +251,7 @@ export const expectedOnFullFileProcessing = {
       MOD_CRUSH: 1,
     },
   },
-  game_8: {
+  game_11: {
     total_kills: 20,
     players: [
       'Dono da Bola',
@@ -242,7 +289,7 @@ export const expectedOnFullFileProcessing = {
       MOD_RAILGUN: 4,
     },
   },
-  game_9: {
+  game_12: {
     total_kills: 160,
     players: ['Isgalamido', 'Dono da Bola', 'Zeh', 'Oootsimo', 'Chessus', 'Assasinu Credi', 'Mal'],
     playerNames: {
@@ -274,7 +321,7 @@ export const expectedOnFullFileProcessing = {
       MOD_FALLING: 2,
     },
   },
-  game_10: {
+  game_13: {
     total_kills: 6,
     players: ['Isgalamido', 'Dono da Bola', 'Zeh', 'Oootsimo', 'Chessus', 'Assasinu Credi', 'Mal'],
     playerNames: {
@@ -303,7 +350,7 @@ export const expectedOnFullFileProcessing = {
       MOD_BFG: 1,
     },
   },
-  game_11: {
+  game_14: {
     total_kills: 122,
     players: ['Isgalamido', 'Dono da Bola', 'Zeh', 'Oootsimo', 'Chessus', 'Assasinu Credi', 'Mal'],
     playerNames: {
@@ -335,7 +382,7 @@ export const expectedOnFullFileProcessing = {
       MOD_BFG: 5,
     },
   },
-  game_12: {
+  game_15: {
     total_kills: 3,
     players: ['Zeh', 'Assasinu Credi', 'Dono da Bola', 'Fasano Agai', 'Assasinu Credi'],
     playerNames: {
@@ -355,7 +402,7 @@ export const expectedOnFullFileProcessing = {
       MOD_TRIGGER_HURT: 3,
     },
   },
-  game_13: {
+  game_16: {
     total_kills: 0,
     players: ['Dono da Bola', 'Oootsimo', 'Isgalamido', 'Assasinu Credi', 'Zeh'],
     playerNames: {
@@ -374,7 +421,7 @@ export const expectedOnFullFileProcessing = {
     },
     kills_by_means: {},
   },
-  game_14: {
+  game_17: {
     total_kills: 13,
     players: ['Dono da Bola', 'Oootsimo', 'Isgalamido', 'Assasinu Credi', 'Zeh', 'UnnamedPlayer'],
     playerNames: {
@@ -400,7 +447,7 @@ export const expectedOnFullFileProcessing = {
       MOD_ROCKET_SPLASH: 2,
     },
   },
-  game_15: {
+  game_18: {
     total_kills: 7,
     players: ['Dono da Bola', 'Oootsimo', 'Isgalamido', 'Assasinu Credi', 'Zeh', 'Mal'],
     playerNames: {
@@ -426,7 +473,7 @@ export const expectedOnFullFileProcessing = {
       MOD_TRIGGER_HURT: 1,
     },
   },
-  game_16: {
+  game_19: {
     total_kills: 95,
     players: ['Isgalamido', 'Oootsimo', 'Dono da Bola', 'Assasinu Credi', 'Zeh', 'Mal'],
     playerNames: {
@@ -455,7 +502,7 @@ export const expectedOnFullFileProcessing = {
       MOD_FALLING: 1,
     },
   },
-  game_17: {
+  game_20: {
     total_kills: 3,
     players: ['Isgalamido', 'Oootsimo', 'Dono da Bola', 'Assasinu Credi', 'Zeh', 'Mal'],
     playerNames: {
@@ -479,7 +526,7 @@ export const expectedOnFullFileProcessing = {
       MOD_ROCKET: 1,
     },
   },
-  game_18: {
+  game_21: {
     total_kills: 131,
     players: ['Isgalamido', 'Oootsimo', 'Dono da Bola', 'Assasinu Credi', 'Zeh', 'Mal'],
     playerNames: {
