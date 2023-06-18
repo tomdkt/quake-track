@@ -557,6 +557,43 @@ export const expectedOnFullFileProcessing = {
   },
 };
 
+export const expectedOnUserSelfDestruct = {
+  game_1: {
+    total_kills: 3,
+    players: ['Isgalamido'],
+    playerNames: {
+      '2': 'Isgalamido',
+    },
+    kills: {
+      Isgalamido: -3,
+    },
+    kills_by_means: {
+      MOD_ROCKET_SPLASH: 2,
+      MOD_TRIGGER_HURT: 1,
+    },
+  },
+};
+
+export const expectedWhenUserNameIsChanged = {
+  game_1: {
+    total_kills: 11,
+    players: ['Isgalamido', 'Dono da Bola'],
+    playerNames: {
+      '2': 'Isgalamido',
+      '3': 'Dono da Bola',
+    },
+    kills: {
+      Isgalamido: -9,
+      'Dono da Bola': 0,
+    },
+    kills_by_means: {
+      MOD_TRIGGER_HURT: 7,
+      MOD_ROCKET_SPLASH: 3,
+      MOD_FALLING: 1,
+    },
+  },
+};
+
 export const expectedTheFileContainsOneGame = {
   game_1: {
     total_kills: 4,

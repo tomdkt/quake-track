@@ -1,19 +1,23 @@
 import { expect } from 'chai';
-import { ParseLogController } from '../../src/main';
 import {
   expectedFileWithOneGameAnotherRound,
   expectedTheFileContainsOneGame,
   expectedTheFileContainsTwoGames,
   expectedOnFullFileProcessing,
+  expectedOnUserSelfDestruct,
+  expectedWhenUserNameIsChanged,
 } from '../fixture/expected-data';
 import { GameStats } from '../../src/interfaces/game-stats';
+import { Main } from '../../src/main';
+import { ParseLogController } from '../../src/controller/parse-log-controller';
 
 describe('Main', () => {
   const baseFolder = 'src/assets';
-  let app: ParseLogController;
+  let app: Main;
 
   before(() => {
-    app = new ParseLogController();
+    const parseLogController = new ParseLogController();
+    app = new Main(parseLogController);
   });
 
   describe('when the app is started', () => {
@@ -27,10 +31,11 @@ describe('Main', () => {
 
     describe('when process the whole file', () => {
       const inputFile = 'qgames.log';
+      const fullPath = `${baseFolder}/${inputFile}`;
       let output: GameStats;
 
       before(async () => {
-        output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
+        output = await app.run(fullPath);
       });
 
       it(shouldExpectSpecificValues, async () => {
@@ -40,70 +45,40 @@ describe('Main', () => {
 
     describe('when the user self destruct', () => {
       const inputFile = 'user-self-destruct.log';
+      const fullPath = `${baseFolder}/${inputFile}`;
       let output: GameStats;
 
       before(async () => {
-        output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
+        output = await app.run(fullPath);
       });
 
       it(shouldExpectSpecificValues, async () => {
-        expect(output).to.be.eql({
-          game_1: {
-            total_kills: 3,
-            players: ['Isgalamido'],
-            playerNames: {
-              '2': 'Isgalamido',
-            },
-            kills: {
-              Isgalamido: -3,
-            },
-            kills_by_means: {
-              MOD_ROCKET_SPLASH: 2,
-              MOD_TRIGGER_HURT: 1,
-            },
-          },
-        });
+        expect(output).to.be.eql(expectedOnUserSelfDestruct);
       });
     });
 
     describe('when the user name is changed', () => {
       const inputFile = 'user-name-changed.log';
+      const fullPath = `${baseFolder}/${inputFile}`;
       let output: GameStats;
 
       before(async () => {
-        output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
+        output = await app.run(fullPath);
       });
 
       it(shouldExpectSpecificValues, async () => {
-        expect(output).to.be.eql({
-          game_1: {
-            total_kills: 11,
-            players: ['Isgalamido', 'Dono da Bola'],
-            playerNames: {
-              '2': 'Isgalamido',
-              '3': 'Dono da Bola',
-            },
-            kills: {
-              Isgalamido: -9,
-              'Dono da Bola': 0,
-            },
-            kills_by_means: {
-              MOD_TRIGGER_HURT: 7,
-              MOD_ROCKET_SPLASH: 3,
-              MOD_FALLING: 1,
-            },
-          },
-        });
+        expect(output).to.be.eql(expectedWhenUserNameIsChanged);
       });
     });
 
     describe('when the file contains one game', () => {
       describe('one round', () => {
         const inputFile = 'one-game-one-round.log';
+        const fullPath = `${baseFolder}/${inputFile}`;
         let output: GameStats;
 
         before(async () => {
-          output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
+          output = await app.run(fullPath);
         });
 
         it(shouldExpectSpecificValues, async () => {
@@ -113,10 +88,11 @@ describe('Main', () => {
 
       describe('another round', () => {
         const inputFile = 'one-game-another-round.log';
+        const fullPath = `${baseFolder}/${inputFile}`;
         let output: GameStats;
 
         before(async () => {
-          output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
+          output = await app.run(fullPath);
         });
 
         it(shouldExpectSpecificValues, async () => {
@@ -127,10 +103,11 @@ describe('Main', () => {
 
     describe('when the file contains two games', () => {
       const inputFile = 'two-games-on-same-file.log';
+      const fullPath = `${baseFolder}/${inputFile}`;
       let output: GameStats;
 
       before(async () => {
-        output = await app.parseLogFile(`${baseFolder}/${inputFile}`);
+        output = await app.run(fullPath);
       });
 
       it(shouldExpectSpecificValues, async () => {
