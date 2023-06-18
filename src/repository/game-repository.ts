@@ -10,6 +10,35 @@ export class GameRepository {
     this.gameCounter += 1;
   }
 
+  public incrementPoints(id: string): void {
+    const name = this.getPlayerName(id);
+    this.getPlayerStats().kills[name] += 1;
+  }
+
+  public reducePoints(id: string): void {
+    const name = this.getPlayerName(id);
+    this.getPlayerStats().kills[name] -= 1;
+  }
+
+  public incrementTotalKills(): void {
+    this.getPlayerStats().total_kills += 1;
+  }
+
+  public incrementKillsByMean(deathCause: DeathCauses): void {
+    this.initDeathCause(deathCause);
+    this.getPlayerStats().kills_by_means[deathCause] += 1;
+  }
+
+  private initDeathCause(deathCause: DeathCauses): void {
+    if (!this.getPlayerStats().kills_by_means[deathCause]) {
+      this.getPlayerStats().kills_by_means[deathCause] = 0;
+    }
+  }
+
+  public getPlayerName(id: string): string {
+    return this.getPlayerStats().playerNames[id];
+  }
+
   public doesPlayerNotExist(id: string): boolean {
     return !this.getPlayerStats().playerNames[id];
   }
