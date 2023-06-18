@@ -41,6 +41,21 @@ describe('Main', () => {
       });
     });
 
+    describe('when process the whole file using terminal', () => {
+      const inputFile = 'qgames.log';
+      const fullPath = `${baseFolder}/${inputFile}`;
+      process.argv[2] = fullPath;
+      let output: GameStats;
+
+      before(async () => {
+        output = await app.runFromEnv();
+      });
+
+      it(shouldExpectSpecificValues, async () => {
+        expect(output).to.be.eql(expectedOnFullFileProcessing);
+      });
+    });
+
     describe('when the user self destruct', () => {
       const inputFile = 'user-self-destruct.log';
       const fullPath = `${baseFolder}/${inputFile}`;

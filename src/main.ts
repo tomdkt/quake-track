@@ -9,4 +9,9 @@ export class Main {
   public async run(filename: string): Promise<GameStats> {
     return this.parseLogController.parseFileReader(filename);
   }
+
+  public async runFromEnv(): Promise<GameStats> {
+    const filename = process.argv[2];
+    return this.parseLogController.parseFileReader(filename);
+  }
 }

@@ -63,9 +63,10 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.test.ts', '**/*.spec.ts'],
+      files: ['**/*.test.ts', '**/*.spec.ts', '**/fixture/*.ts'],
       rules: {
         'sonarjs/no-duplicate-string': 'error',
+        'sonarjs/no-duplicate-string': 'off',
       },
     },
   ],

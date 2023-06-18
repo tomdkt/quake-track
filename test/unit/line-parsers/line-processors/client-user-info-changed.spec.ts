@@ -4,7 +4,6 @@ import { GameRepository } from '../../../../src/repository/game-repository';
 import { deepEqual, instance, mock, reset, verify, when } from 'ts-mockito';
 import { ClientUserInfoChanged } from '../../../../src/line-parsers/line-processors/client-user-info-changed';
 import { inputIsgalami } from './fixture/client-user-info-changed-input-line';
-import { newPlayerStats } from './fixture/new-player-stats-fixture';
 
 describe('ClientUserInfoChanged', () => {
   let component: ClientUserInfoChanged;
@@ -25,7 +24,6 @@ describe('ClientUserInfoChanged', () => {
   describe('when process line', () => {
     describe('when add', () => {
       const input = inputIsgalami;
-      const playerStats = newPlayerStats();
 
       before(async () => {
         reset(gameRepository);
