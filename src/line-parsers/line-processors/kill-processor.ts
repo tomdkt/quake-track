@@ -17,18 +17,30 @@ export class KillProcessor extends LineProcessor {
       return;
     }
 
-    const killerId = match[1];
-    const deadPlayerId = match[2];
-    const deathCauseId = match[3];
+    const { killerId, deadPlayerId, deathCauseId } = this.extracted(match);
 
+    this.determineScore(killerId, deadPlayerId);
+    this.gameRepository.incrementTotalKills();
+    this.gameRepository.incrementKillsByMean(deathCauseId);
+  }
+
+  private determineScore(killerId: string, deadPlayerId: string) {
     if (this.isSelfDestruction(killerId, deadPlayerId)) {
       this.gameRepository.reducePoints(deadPlayerId);
     } else {
       this.gameRepository.incrementPoints(killerId);
     }
+  }
 
-    this.gameRepository.incrementTotalKills();
-    this.gameRepository.incrementKillsByMean(deathCauseId);
+  private extracted(match: RegExpMatchArray): {
+    killerId: string;
+    deadPlayerId: string;
+    deathCauseId: string;
+  } {
+    const killerId = match[1];
+    const deadPlayerId = match[2];
+    const deathCauseId = match[3];
+    return { killerId, deadPlayerId, deathCauseId };
   }
 
   private isSelfDestruction(killerId: string, deadPlayerId: string): boolean {

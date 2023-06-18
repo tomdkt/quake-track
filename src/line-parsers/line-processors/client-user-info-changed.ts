@@ -16,10 +16,15 @@ export class ClientUserInfoChanged extends LineProcessor {
       return;
     }
 
-    const playerId = match[1];
-    const playerName = match[2];
+    const { playerId, playerName } = this.extracted(match);
     if (this.gameRepository.doesPlayerNotExist(playerId)) {
       this.gameRepository.addNewPlayer(playerId, playerName);
     }
+  }
+
+  private extracted(match: RegExpMatchArray): { playerId: string; playerName: string } {
+    const playerId = match[1];
+    const playerName = match[2];
+    return { playerId, playerName };
   }
 }
