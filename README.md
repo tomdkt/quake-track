@@ -6,6 +6,50 @@ QuakeTrack is a project aimed at parsing Quake log files to provide enhanced gam
 1. Command to install: `npm i`
 2. Start app: `npm run start -- ./src/assets/qgames.log :tada:`
 
+### How it works?
+ ```mermaid
+classDiagram
+  class Main {
+  }
+  class parseLogController {
+  }
+  interface Reader 
+  class FileReader {
+  }
+  class LineProcessorManager {
+  }
+  interface LineProcessor 
+  class gameRepository {
+  }
+  Main --> parseLogController
+
+  parseLogController *-- FileReader
+  parseLogController *-- LineProcessorManager
+
+  FileReader ..|> Reader
+
+  LineProcessorManager *-- InitGame
+  LineProcessorManager *-- KillProcessor
+  LineProcessorManager *-- ClientUserInfoChanged
+  
+  class KillProcessor {
+  }
+  KillProcessor ..|> LineProcessor
+  KillProcessor --> gameRepository
+
+  class InitGame {
+  }
+  InitGame ..|> LineProcessor
+  InitGame --> gameRepository
+
+  class ClientUserInfoChanged {
+  }
+  ClientUserInfoChanged ..|> LineProcessor
+  ClientUserInfoChanged --> gameRepository
+
+```
+
+
 ## Testing
 
 ```bash
