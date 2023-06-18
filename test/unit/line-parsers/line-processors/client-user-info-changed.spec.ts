@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 
 import { GameRepository } from '../../../../src/repository/game-repository';
-import { instance, mock, reset, verify, when } from 'ts-mockito';
+import { deepEqual, instance, mock, reset, verify, when } from 'ts-mockito';
 import { ClientUserInfoChanged } from '../../../../src/line-parsers/line-processors/client-user-info-changed';
-import { inputDonoDaBola, inputIsgalami } from './fixture/client-user-info-changed-input-line';
+import { inputIsgalami } from './fixture/client-user-info-changed-input-line';
 import { newPlayerStats } from './fixture/new-player-stats-fixture';
 
 describe('ClientUserInfoChanged', () => {
@@ -23,61 +23,22 @@ describe('ClientUserInfoChanged', () => {
   });
 
   describe('when process line', () => {
-    describe('when is Isgalamido', () => {
+    describe('when add', () => {
       const input = inputIsgalami;
       const playerStats = newPlayerStats();
 
       before(async () => {
         reset(gameRepository);
-        when(gameRepository.getPlayerStats()).thenReturn(playerStats);
+        when(gameRepository.doesPlayerNotExist('2')).thenReturn(true);
         component.processLine(input);
       });
 
-      it('should call getPlayerStats', async () => {
-        verify(gameRepository.getPlayerStats()).times(4);
+      it('should call doesPlayerNotExist', async () => {
+        verify(gameRepository.doesPlayerNotExist('2')).once();
       });
 
-      it('should change the playerStats', async () => {
-        expect(playerStats).to.be.eql({
-          total_kills: 0,
-          players: ['Isgalamido'],
-          playerNames: {
-            '2': 'Isgalamido',
-          },
-          kills: {
-            Isgalamido: 0,
-          },
-          kills_by_means: {},
-        });
-      });
-    });
-
-    describe('when is "Dono da Bola"', () => {
-      const input = inputDonoDaBola;
-      const playerStats = newPlayerStats();
-
-      before(async () => {
-        reset(gameRepository);
-        when(gameRepository.getPlayerStats()).thenReturn(playerStats);
-        component.processLine(input);
-      });
-
-      it('should call getPlayerStats', async () => {
-        verify(gameRepository.getPlayerStats()).times(4);
-      });
-
-      it('should change the playerStats', async () => {
-        expect(playerStats).to.be.eql({
-          total_kills: 0,
-          players: ['Dono da Bola'],
-          playerNames: {
-            '3': 'Dono da Bola',
-          },
-          kills: {
-            'Dono da Bola': 0,
-          },
-          kills_by_means: {},
-        });
+      it('should addNewPlayer', async () => {
+        verify(gameRepository.addNewPlayer('2', deepEqual('Isgalamido'))).once();
       });
     });
   });

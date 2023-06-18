@@ -10,6 +10,16 @@ export class GameRepository {
     this.gameCounter += 1;
   }
 
+  public doesPlayerNotExist(id: string): boolean {
+    return !this.getPlayerStats().playerNames[id];
+  }
+
+  public addNewPlayer(id: string, name: string): void {
+    this.getPlayerStats().players.push(name);
+    this.getPlayerStats().playerNames[id] = name;
+    this.getPlayerStats().kills[name] = 0;
+  }
+
   public getPlayerStats(): PlayerStats {
     return this.gameStats[`game_${this.gameCounter}`];
   }

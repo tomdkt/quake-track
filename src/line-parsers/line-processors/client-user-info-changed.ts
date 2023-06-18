@@ -13,10 +13,9 @@ export class ClientUserInfoChanged extends LineProcessor {
     const playerId = line.split(' ')[2];
     const playerInfo = line.split('n\\')[1];
     const playerName = playerInfo.split('\\')[0];
-    if (!this.gameRepository.getPlayerStats().playerNames[playerId]) {
-      this.gameRepository.getPlayerStats().players.push(playerName);
-      this.gameRepository.getPlayerStats().playerNames[playerId] = playerName;
-      this.gameRepository.getPlayerStats().kills[playerName] = 0;
+
+    if (this.gameRepository.doesPlayerNotExist(playerId)) {
+      this.gameRepository.addNewPlayer(playerId, playerName);
     }
   }
 }
