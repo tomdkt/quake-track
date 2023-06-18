@@ -14,10 +14,10 @@ export class LineProcessorManager {
     this.lineProcessors.set(KillProcessor.key, new KillProcessor(gameRepository));
   }
 
-  public processLine(line: string): void {
+  public process(line: string): void {
     for (const [key, lineProcessor] of this.lineProcessors) {
       if (key.test(line)) {
-        lineProcessor.processLine(line);
+        lineProcessor.handle(line);
         break;
       }
     }

@@ -28,7 +28,7 @@ describe('ClientUserInfoChanged', () => {
       before(async () => {
         reset(gameRepository);
         when(gameRepository.doesPlayerNotExist('2')).thenReturn(true);
-        component.processLine(input);
+        component.handle(input);
       });
 
       it('should call doesPlayerNotExist', async () => {

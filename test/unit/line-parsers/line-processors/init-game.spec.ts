@@ -24,7 +24,7 @@ describe('InitGame', () => {
     const input = 'some-input-line';
 
     before(async () => {
-      component.processLine(input);
+      component.handle(input);
     });
 
     it('should call init game on repository', async () => {

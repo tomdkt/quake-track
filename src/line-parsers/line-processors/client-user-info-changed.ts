@@ -10,7 +10,7 @@ export class ClientUserInfoChanged extends LineProcessor {
     this.gameRepository = gameRepository;
   }
 
-  public processLine(line: string): void {
+  public handle(line: string): void {
     const match = line.match(this.regex);
     if (!match) {
       return;

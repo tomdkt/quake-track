@@ -8,7 +8,7 @@ export class ParseLogController {
     const lineProcessorManager = new LineProcessorManager();
 
     for await (const line of reader.read()) {
-      lineProcessorManager.processLine(line);
+      lineProcessorManager.process(line);
     }
 
     return lineProcessorManager.getReport();

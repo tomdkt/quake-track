@@ -32,7 +32,7 @@ describe('KillProcessor', () => {
 
       before(async () => {
         reset(gameRepository);
-        component.processLine(input);
+        component.handle(input);
       });
 
       it('should call incrementPoints', async () => {
@@ -51,7 +51,7 @@ describe('KillProcessor', () => {
 
       before(async () => {
         reset(gameRepository);
-        component.processLine(input);
+        component.handle(input);
       });
 
       it('should call reducePoints', async () => {
@@ -64,7 +64,7 @@ describe('KillProcessor', () => {
 
       before(async () => {
         reset(gameRepository);
-        component.processLine(input);
+        component.handle(input);
       });
 
       it('should call reducePoints', async () => {
