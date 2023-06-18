@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import { DeathCausesArray, GameStats, ParseLogController } from '../src/app';
+import { DeathCausesArray, GameStats, ParseLogController } from '../../src/app';
 import {
   expectedFileWithOneGameAnotherRound,
   expectedTheFileContainsOneGame,
   expectedTheFileContainsTwoGames,
   expectedOnFullFileProcessing,
-} from './fixture/qgames.fixture';
+} from '../fixture/expected-data';
 
 describe('ParseLogController', () => {
   const baseFolder = 'src/assets';
