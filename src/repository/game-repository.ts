@@ -24,7 +24,12 @@ export class GameRepository {
     this.getPlayerStats().total_kills += 1;
   }
 
-  public incrementKillsByMean(deathCause: DeathCauses): void {
+  private getDeathCauses(deathCause: string): DeathCauses {
+    return DeathCauses[parseInt(deathCause)] as unknown as DeathCauses;
+  }
+
+  public incrementKillsByMean(deathCauseId: string): void {
+    const deathCause = this.getDeathCauses(deathCauseId);
     this.initDeathCause(deathCause);
     this.getPlayerStats().kills_by_means[deathCause] += 1;
   }

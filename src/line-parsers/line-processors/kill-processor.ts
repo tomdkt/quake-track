@@ -1,6 +1,5 @@
 import { LineProcessor } from '../line-processor';
 import { GameRepository } from '../../repository/game-repository';
-import { deathCauseMapping, DeathCauses } from '../../interfaces/death-causes';
 
 export class KillProcessor extends LineProcessor {
   public static key = /\d+:\d+ Kill:/;
@@ -20,8 +19,7 @@ export class KillProcessor extends LineProcessor {
 
     const killerId = match[1];
     const deadPlayerId = match[2];
-    const deathCauseId = match[3] as string;
-    const deathCauseName = this.getDeathCauses(deathCauseId);
+    const deathCauseId = match[3];
 
     if (this.isSelfDestruction(killerId, deadPlayerId)) {
       this.gameRepository.reducePoints(deadPlayerId);
@@ -30,14 +28,10 @@ export class KillProcessor extends LineProcessor {
     }
 
     this.gameRepository.incrementTotalKills();
-    this.gameRepository.incrementKillsByMean(deathCauseName);
+    this.gameRepository.incrementKillsByMean(deathCauseId);
   }
 
   private isSelfDestruction(killerId: string, deadPlayerId: string): boolean {
     return this.WORLD_ID === killerId || killerId === deadPlayerId;
-  }
-
-  private getDeathCauses(deathCause: string): DeathCauses {
-    return deathCauseMapping[deathCause];
   }
 }

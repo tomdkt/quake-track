@@ -42,7 +42,7 @@ describe('KillProcessor', () => {
         verify(gameRepository.incrementTotalKills()).once();
       });
       it('should call incrementKillsByMean', async () => {
-        verify(gameRepository.incrementKillsByMean(DeathCauses.MOD_RAILGUN)).once();
+        verify(gameRepository.incrementKillsByMean(String(DeathCauses.MOD_RAILGUN))).once();
       });
     });
 
