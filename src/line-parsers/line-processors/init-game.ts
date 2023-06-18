@@ -3,7 +3,7 @@ import { GameRepository } from '../../repository/game-repository';
 import assert from 'assert';
 
 export class InitGame extends LineProcessor {
-  public static key = 'InitGame:';
+  public static key = /\d+:\d+ InitGame:/;
 
   public constructor(private readonly gameRepository: GameRepository) {
     super();

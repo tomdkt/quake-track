@@ -2,7 +2,7 @@ import { LineProcessor } from '../line-processor';
 import { GameRepository } from '../../repository/game-repository';
 
 export class ClientUserInfoChanged extends LineProcessor {
-  public static key = 'ClientUserinfoChanged:';
+  public static key = /\d+:\d+ ClientUserinfoChanged:/;
 
   public constructor(private readonly gameRepository: GameRepository) {
     super();

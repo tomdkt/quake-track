@@ -6,18 +6,18 @@ import { GameRepository } from '../repository/game-repository';
 import { GameStats } from '../interfaces/game-stats';
 
 export class LineProcessorManager {
-  private lineProcessors: { [key: string]: LineProcessor } = {};
+  private readonly lineProcessors: Map<RegExp, LineProcessor> = new Map();
 
   public constructor(private readonly gameRepository: GameRepository = new GameRepository()) {
-    this.lineProcessors[InitGame.key] = new InitGame(gameRepository);
-    this.lineProcessors[ClientUserInfoChanged.key] = new ClientUserInfoChanged(gameRepository);
-    this.lineProcessors[KillProcessor.key] = new KillProcessor(gameRepository);
+    this.lineProcessors.set(InitGame.key, new InitGame(gameRepository));
+    this.lineProcessors.set(ClientUserInfoChanged.key, new ClientUserInfoChanged(gameRepository));
+    this.lineProcessors.set(KillProcessor.key, new KillProcessor(gameRepository));
   }
 
   public processLine(line: string): void {
-    for (const key in this.lineProcessors) {
-      if (line.includes(key)) {
-        this.lineProcessors[key].processLine(line);
+    for (const [key, lineProcessor] of this.lineProcessors) {
+      if (key.test(line)) {
+        lineProcessor.processLine(line);
         break;
       }
     }

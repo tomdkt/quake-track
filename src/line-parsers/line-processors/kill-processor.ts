@@ -3,7 +3,7 @@ import { DeathCauses } from '../../interfaces/death-causes';
 import { GameRepository } from '../../repository/game-repository';
 
 export class KillProcessor extends LineProcessor {
-  public static key = 'Kill:';
+  public static key = /\d+:\d+ Kill:/;
 
   public constructor(private readonly gameRepository: GameRepository) {
     super();
