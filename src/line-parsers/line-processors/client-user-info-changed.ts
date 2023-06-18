@@ -3,6 +3,7 @@ import { GameRepository } from '../../repository/game-repository';
 
 export class ClientUserInfoChanged extends LineProcessor {
   public static key = /\d+:\d+ ClientUserinfoChanged:/;
+  private readonly regex = /ClientUserinfoChanged: (\d+) n\\([^\\]+)\\t/;
 
   public constructor(private readonly gameRepository: GameRepository) {
     super();
@@ -10,12 +11,14 @@ export class ClientUserInfoChanged extends LineProcessor {
   }
 
   public processLine(line: string): void {
-    const playerId = line.split(' ')[2];
-    const playerInfo = line.split('n\\')[1];
-    const playerName = playerInfo.split('\\')[0];
+    const match = line.match(this.regex);
 
-    if (this.gameRepository.doesPlayerNotExist(playerId)) {
-      this.gameRepository.addNewPlayer(playerId, playerName);
+    if (match) {
+      const playerId = match[1];
+      const playerName = match[2];
+      if (this.gameRepository.doesPlayerNotExist(playerId)) {
+        this.gameRepository.addNewPlayer(playerId, playerName);
+      }
     }
   }
 }

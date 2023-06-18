@@ -96,7 +96,7 @@ export const expectedOnFullFileProcessing = {
   game_6: {
     total_kills: 29,
     players: [
-      'Fasano Agai',
+      'Fasano Again',
       'Isgalamido',
       'Zeh',
       'Dono da Bola',
@@ -104,7 +104,7 @@ export const expectedOnFullFileProcessing = {
       'Assasinu Credi',
     ],
     playerNames: {
-      '2': 'Fasano Agai',
+      '2': 'Fasano Again',
       '3': 'Isgalamido',
       '4': 'Zeh',
       '5': 'Dono da Bola',
@@ -112,7 +112,7 @@ export const expectedOnFullFileProcessing = {
       '7': 'Assasinu Credi',
     },
     kills: {
-      'Fasano Agai': 8,
+      'Fasano Again': 8,
       Isgalamido: 3,
       Zeh: 7,
       'Dono da Bola': 2,
@@ -384,10 +384,10 @@ export const expectedOnFullFileProcessing = {
   },
   game_15: {
     total_kills: 3,
-    players: ['Zeh', 'Assasinu Credi', 'Dono da Bola', 'Fasano Agai', 'Assasinu Credi'],
+    players: ['Zeh', 'Assasinu Credi', 'Dono da Bola', 'Fasano Again', 'Assasinu Credi'],
     playerNames: {
       '2': 'Dono da Bola',
-      '3': 'Fasano Agai',
+      '3': 'Fasano Again',
       '4': 'Zeh',
       '5': 'Assasinu Credi',
       '7': 'Assasinu Credi',
@@ -396,7 +396,7 @@ export const expectedOnFullFileProcessing = {
       Zeh: -3,
       'Assasinu Credi': 0,
       'Dono da Bola': 0,
-      'Fasano Agai': 0,
+      'Fasano Again': 0,
     },
     kills_by_means: {
       MOD_TRIGGER_HURT: 3,
