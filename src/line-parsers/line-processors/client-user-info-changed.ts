@@ -12,13 +12,14 @@ export class ClientUserInfoChanged extends LineProcessor {
 
   public processLine(line: string): void {
     const match = line.match(this.regex);
+    if (!match) {
+      return;
+    }
 
-    if (match) {
-      const playerId = match[1];
-      const playerName = match[2];
-      if (this.gameRepository.doesPlayerNotExist(playerId)) {
-        this.gameRepository.addNewPlayer(playerId, playerName);
-      }
+    const playerId = match[1];
+    const playerName = match[2];
+    if (this.gameRepository.doesPlayerNotExist(playerId)) {
+      this.gameRepository.addNewPlayer(playerId, playerName);
     }
   }
 }

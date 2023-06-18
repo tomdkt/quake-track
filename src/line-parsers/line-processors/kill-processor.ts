@@ -1,9 +1,11 @@
 import { LineProcessor } from '../line-processor';
-import { DeathCauses } from '../../interfaces/death-causes';
 import { GameRepository } from '../../repository/game-repository';
+import { deathCauseMapping, DeathCauses } from '../../interfaces/death-causes';
 
 export class KillProcessor extends LineProcessor {
   public static key = /\d+:\d+ Kill:/;
+  private readonly regex = /Kill: (\d+) (\d+) (\d+)/;
+  private readonly WORLD_ID = '1022';
 
   public constructor(private readonly gameRepository: GameRepository) {
     super();
@@ -11,23 +13,31 @@ export class KillProcessor extends LineProcessor {
   }
 
   public processLine(line: string): void {
-    const segments = line.split(':');
-    const killerId = segments[2].trim().split(' ')[0];
-    const deadPlayerId = segments[2].trim().split(' ')[1];
-    const killer = segments[3].split('killed')[0].trim();
-    const deathCause = segments[3].split('by')[1].trim() as DeathCauses;
+    const match = line.match(this.regex);
+    if (!match) {
+      return;
+    }
 
-    if (this.isSelfDestruction(killer, killerId, deadPlayerId)) {
+    const killerId = match[1];
+    const deadPlayerId = match[2];
+    const deathCauseId = match[3] as string;
+    const deathCauseName = this.getDeathCauses(deathCauseId);
+
+    if (this.isSelfDestruction(killerId, deadPlayerId)) {
       this.gameRepository.reducePoints(deadPlayerId);
     } else {
       this.gameRepository.incrementPoints(killerId);
     }
 
     this.gameRepository.incrementTotalKills();
-    this.gameRepository.incrementKillsByMean(deathCause);
+    this.gameRepository.incrementKillsByMean(deathCauseName);
   }
 
-  private isSelfDestruction(killer: string, killerId: string, deadPlayerId: string): boolean {
-    return killer === '<world>' || killerId === deadPlayerId;
+  private isSelfDestruction(killerId: string, deadPlayerId: string): boolean {
+    return this.WORLD_ID === killerId || killerId === deadPlayerId;
+  }
+
+  private getDeathCauses(deathCause: string): DeathCauses {
+    return deathCauseMapping[deathCause];
   }
 }

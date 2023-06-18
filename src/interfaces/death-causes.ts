@@ -29,3 +29,18 @@ export enum DeathCauses {
   MOD_JUICED = 'MOD_JUICED', // #endif
   MOD_GRAPPLE = 'MOD_GRAPPLE',
 }
+
+/**
+ * workaround on enum error TS7053: Element implicitly has an 'any' type because expression of type '"deathCauseIndex"' can't be used to index type 'typeof DeathCauses'.
+ Property 'deathCauseIndex' does not exist on type 'typeof DeathCauses'
+ * */
+export const deathCauseMapping: Record<number | string, DeathCauses> = {};
+let count = 0;
+for (const key in DeathCauses) {
+  const enumKey = key as keyof typeof DeathCauses;
+  const value = DeathCauses[enumKey];
+  if (typeof value === 'string') {
+    deathCauseMapping[count] = value;
+  }
+  count++;
+}
