@@ -8,7 +8,7 @@ import {
 } from '../fixture/expected-data';
 import { GameStats } from '../../src/interfaces/game-stats';
 
-describe('ParseLogController', () => {
+describe('Main', () => {
   const baseFolder = 'src/assets';
   let app: ParseLogController;
 
