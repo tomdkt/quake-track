@@ -5,26 +5,26 @@ import { GameRepository } from '../../../../src/repository/game-repository';
 import { instance, mock, verify } from 'ts-mockito';
 
 describe('InitGame', () => {
-  let initGame: InitGame;
+  let component: InitGame;
   let gameRepository: GameRepository;
 
   before(() => {
     gameRepository = mock(GameRepository);
 
-    initGame = new InitGame(instance(gameRepository));
+    component = new InitGame(instance(gameRepository));
   });
 
-  describe('when the initGame is started', () => {
+  describe('when the component is started', () => {
     it('should be defined and ok', () => {
-      expect(initGame).to.be.ok;
+      expect(component).to.be.ok;
     });
   });
 
   describe('when process line', () => {
-    const input = 'qgames.log';
+    const input = 'some-input-line';
 
     before(async () => {
-      initGame.processLine(input);
+      component.processLine(input);
     });
 
     it('should call init game on repository', async () => {

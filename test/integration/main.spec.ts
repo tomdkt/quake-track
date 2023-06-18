@@ -6,7 +6,7 @@ import {
   expectedOnFullFileProcessing,
   expectedOnUserSelfDestruct,
   expectedWhenUserNameIsChanged,
-} from '../fixture/expected-data';
+} from './fixture/expected-data';
 import { GameStats } from '../../src/interfaces/game-stats';
 import { Main } from '../../src/main';
 
