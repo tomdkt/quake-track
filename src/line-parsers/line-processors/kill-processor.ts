@@ -17,13 +17,17 @@ export class KillProcessor extends LineProcessor {
     const killer = segments[3].split('killed')[0].trim();
     const deathCause = segments[3].split('by')[1].trim() as DeathCauses;
 
-    if (killer !== '<world>' && killerId !== deadPlayerId) {
-      this.gameRepository.incrementPoints(killerId);
-    } else {
+    if (this.isSelfDestruction(killer, killerId, deadPlayerId)) {
       this.gameRepository.reducePoints(deadPlayerId);
+    } else {
+      this.gameRepository.incrementPoints(killerId);
     }
 
     this.gameRepository.incrementTotalKills();
     this.gameRepository.incrementKillsByMean(deathCause);
+  }
+
+  private isSelfDestruction(killer: string, killerId: string, deadPlayerId: string): boolean {
+    return killer === '<world>' || killerId === deadPlayerId;
   }
 }
