@@ -3,10 +3,7 @@ import { expect } from 'chai';
 import { GameRepository } from '../../../../src/repository/game-repository';
 import { instance, mock, reset, verify, when } from 'ts-mockito';
 import { ClientUserInfoChanged } from '../../../../src/line-parsers/line-processors/client-user-info-changed';
-import {
-  inputClientUserinfoChangedDonoDaBola,
-  inputClientUserinfoChangedIsgalami,
-} from './fixture/input-line';
+import { inputDonoDaBola, inputIsgalami } from './fixture/client-user-info-changed-input-line';
 import { newPlayerStats } from './fixture/new-player-stats-fixture';
 
 describe('ClientUserInfoChanged', () => {
@@ -27,7 +24,7 @@ describe('ClientUserInfoChanged', () => {
 
   describe('when process line', () => {
     describe('when is Isgalamido', () => {
-      const input = inputClientUserinfoChangedIsgalami;
+      const input = inputIsgalami;
       const playerStats = newPlayerStats();
 
       before(async () => {
@@ -56,7 +53,7 @@ describe('ClientUserInfoChanged', () => {
     });
 
     describe('when is "Dono da Bola"', () => {
-      const input = inputClientUserinfoChangedDonoDaBola;
+      const input = inputDonoDaBola;
       const playerStats = newPlayerStats();
 
       before(async () => {
