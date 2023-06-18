@@ -6,7 +6,42 @@ QuakeTrack is a project aimed at parsing Quake log files to provide enhanced gam
 1. Command to install: `npm i`
 2. Start app: `npm run start -- ./src/assets/qgames.log :tada:`
 
-### How it works?
+## output
+```json
+{
+  "total_kills": 29,
+  "players":
+  [
+    "Fasano Again",
+    "Isgalamido",
+    "Zeh",
+    "Dono da Bola",
+    "UnnamedPlayer",
+    "Assasinu Credi"
+  ],
+  "kills":
+  {
+    "Fasano Again": 8,
+    "Isgalamido": 3,
+    "Zeh": 7,
+    "Dono da Bola": 2,
+    "UnnamedPlayer": 0,
+    "Assasinu Credi": 1
+  },
+  "kills_by_means":
+  {
+    "MOD_ROCKET": 5,
+    "MOD_RAILGUN": 2,
+    "MOD_SHOTGUN": 4,
+    "MOD_ROCKET_SPLASH": 13,
+    "MOD_TRIGGER_HURT": 3,
+    "MOD_FALLING": 1,
+    "MOD_MACHINEGUN": 1
+  }
+}
+```
+
+### Codebase Architecture Overview?
  ```mermaid
 classDiagram
   class Main {
