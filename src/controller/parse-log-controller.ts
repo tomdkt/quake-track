@@ -6,35 +6,17 @@ import { DeathCauses } from '../interfaces/death-causes';
 import { LineProcessorManager } from '../line-parsers/line-processor-manager';
 
 export class ParseLogController {
-  public constructor(private readonly lineProcessorManager = new LineProcessorManager()) {}
-
   public async parseLogFile(filename: string): Promise<GameStats> {
     const fileStream = fs.createReadStream(filename, 'utf8');
     const rl = readline.createInterface({ input: fileStream });
-    let gameCounter = 0;
-    const gameStats: GameStats = {};
-    let playerStats: PlayerStats = this.initializePlayerStats();
 
+    const lineProcessorManager = new LineProcessorManager();
     for await (const line of rl) {
       const trimmedLine = line.trim();
-
-      if (trimmedLine.includes('InitGame:')) {
-        if (gameCounter > 0) {
-          gameStats[`game_${gameCounter}`] = playerStats;
-          playerStats = this.initializePlayerStats();
-        }
-        gameCounter += 1;
-      } else {
-        this.lineProcessorManager.processLine(trimmedLine, playerStats);
-      }
+      lineProcessorManager.processLine(trimmedLine);
     }
 
-    // Save the last game stats
-    if (gameCounter > 0) {
-      gameStats[`game_${gameCounter}`] = playerStats;
-    }
-
-    return gameStats;
+    return lineProcessorManager.getReport();
   }
 
   private initializePlayerStats(): PlayerStats {
