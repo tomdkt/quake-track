@@ -5,12 +5,12 @@ import { FileReader } from '../reader/file-reader';
 export class ParseLogController {
   public async parseFileReader(filename: string): Promise<GameStats> {
     const reader = new FileReader(filename);
-    const lineProcessorManager = new LineProcessorManager();
+    const manager = new LineProcessorManager();
 
     for await (const line of reader.read()) {
-      lineProcessorManager.process(line);
+      manager.process(line);
     }
 
-    return lineProcessorManager.getReport();
+    return manager.getReport();
   }
 }
