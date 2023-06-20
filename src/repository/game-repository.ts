@@ -3,9 +3,15 @@ import { DeathCauses } from '../interfaces/death-causes';
 import { GameStats } from '../interfaces/game-stats';
 
 export class GameRepository {
-  private gameCounter = 0;
-  private gameStats: GameStats = {};
-  private playerNames: Record<string, string> = {};
+  private readonly gameStats: GameStats;
+  private gameCounter;
+  private playerNames: Record<string, string>;
+
+  public constructor() {
+    this.gameCounter = 0;
+    this.gameStats = {};
+    this.playerNames = {};
+  }
 
   public incrementGameCounter(): void {
     this.gameCounter += 1;
