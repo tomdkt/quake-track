@@ -2,9 +2,6 @@ export const expectedOnFullFileProcessing = {
   game_1: {
     total_kills: 0,
     players: ['Isgalamido'],
-    playerNames: {
-      '2': 'Isgalamido',
-    },
     kills: {
       Isgalamido: 0,
     },
@@ -13,10 +10,6 @@ export const expectedOnFullFileProcessing = {
   game_2: {
     total_kills: 11,
     players: ['Isgalamido', 'Dono da Bola'],
-    playerNames: {
-      '2': 'Isgalamido',
-      '3': 'Dono da Bola',
-    },
     kills: {
       Isgalamido: -9,
       'Dono da Bola': 0,
@@ -30,11 +23,6 @@ export const expectedOnFullFileProcessing = {
   game_3: {
     total_kills: 4,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-    },
     kills: {
       'Dono da Bola': -1,
       Isgalamido: 1,
@@ -49,12 +37,6 @@ export const expectedOnFullFileProcessing = {
   game_4: {
     total_kills: 105,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh', 'Assasinu Credi'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-      '5': 'Assasinu Credi',
-    },
     kills: {
       'Dono da Bola': 5,
       Isgalamido: 19,
@@ -74,12 +56,6 @@ export const expectedOnFullFileProcessing = {
   game_5: {
     total_kills: 14,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh', 'Assasinu Credi'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-      '5': 'Assasinu Credi',
-    },
     kills: {
       'Dono da Bola': 1,
       Isgalamido: 2,
@@ -103,14 +79,6 @@ export const expectedOnFullFileProcessing = {
       'UnnamedPlayer',
       'Assasinu Credi',
     ],
-    playerNames: {
-      '2': 'Fasano Again',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-      '5': 'Dono da Bola',
-      '6': 'UnnamedPlayer',
-      '7': 'Assasinu Credi',
-    },
     kills: {
       'Fasano Again': 8,
       Isgalamido: 3,
@@ -132,15 +100,6 @@ export const expectedOnFullFileProcessing = {
   game_7: {
     total_kills: 130,
     players: ['Oootsimo', 'Isgalamido', 'Zeh', 'Dono da Bola', 'Mal', 'Assasinu Credi', 'Chessus!'],
-    playerNames: {
-      '2': 'Oootsimo',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-      '5': 'Dono da Bola',
-      '6': 'Mal',
-      '7': 'Assasinu Credi',
-      '8': 'Chessus!',
-    },
     kills: {
       Oootsimo: 20,
       Isgalamido: 12,
@@ -163,14 +122,6 @@ export const expectedOnFullFileProcessing = {
   game_8: {
     total_kills: 89,
     players: ['Oootsimo', 'Isgalamido', 'Zeh', 'Dono da Bola', 'Mal', 'Assasinu Credi'],
-    playerNames: {
-      '2': 'Oootsimo',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-      '5': 'Dono da Bola',
-      '6': 'Mal',
-      '7': 'Assasinu Credi',
-    },
     kills: {
       Oootsimo: 14,
       Isgalamido: 20,
@@ -192,14 +143,6 @@ export const expectedOnFullFileProcessing = {
   game_9: {
     total_kills: 67,
     players: ['Oootsimo', 'Isgalamido', 'Zeh', 'Dono da Bola', 'Mal', 'Assasinu Credi'],
-    playerNames: {
-      '2': 'Oootsimo',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-      '5': 'Dono da Bola',
-      '6': 'Mal',
-      '7': 'Assasinu Credi',
-    },
     kills: {
       Oootsimo: 7,
       Isgalamido: 0,
@@ -221,15 +164,6 @@ export const expectedOnFullFileProcessing = {
   game_10: {
     total_kills: 60,
     players: ['Oootsimo', 'Dono da Bola', 'Zeh', 'Chessus', 'Mal', 'Assasinu Credi', 'Isgalamido'],
-    playerNames: {
-      '2': 'Oootsimo',
-      '3': 'Dono da Bola',
-      '4': 'Zeh',
-      '5': 'Chessus',
-      '6': 'Mal',
-      '7': 'Assasinu Credi',
-      '8': 'Isgalamido',
-    },
     kills: {
       Oootsimo: -1,
       'Dono da Bola': 3,
@@ -262,15 +196,6 @@ export const expectedOnFullFileProcessing = {
       'Assasinu Credi',
       'UnnamedPlayer',
     ],
-    playerNames: {
-      '2': 'Isgalamido',
-      '3': 'Dono da Bola',
-      '4': 'Zeh',
-      '5': 'Oootsimo',
-      '6': 'Chessus',
-      '7': 'Assasinu Credi',
-      '8': 'UnnamedPlayer',
-    },
     kills: {
       'Dono da Bola': -2,
       Isgalamido: 3,
@@ -292,15 +217,6 @@ export const expectedOnFullFileProcessing = {
   game_12: {
     total_kills: 160,
     players: ['Isgalamido', 'Dono da Bola', 'Zeh', 'Oootsimo', 'Chessus', 'Assasinu Credi', 'Mal'],
-    playerNames: {
-      '2': 'Isgalamido',
-      '3': 'Dono da Bola',
-      '4': 'Zeh',
-      '5': 'Oootsimo',
-      '6': 'Chessus',
-      '7': 'Assasinu Credi',
-      '8': 'Mal',
-    },
     kills: {
       Isgalamido: 22,
       'Dono da Bola': 3,
@@ -324,15 +240,6 @@ export const expectedOnFullFileProcessing = {
   game_13: {
     total_kills: 6,
     players: ['Isgalamido', 'Dono da Bola', 'Zeh', 'Oootsimo', 'Chessus', 'Assasinu Credi', 'Mal'],
-    playerNames: {
-      '2': 'Isgalamido',
-      '3': 'Dono da Bola',
-      '4': 'Zeh',
-      '5': 'Oootsimo',
-      '6': 'Chessus',
-      '7': 'Assasinu Credi',
-      '8': 'Mal',
-    },
     kills: {
       Isgalamido: -1,
       'Dono da Bola': -1,
@@ -353,15 +260,6 @@ export const expectedOnFullFileProcessing = {
   game_14: {
     total_kills: 122,
     players: ['Isgalamido', 'Dono da Bola', 'Zeh', 'Oootsimo', 'Chessus', 'Assasinu Credi', 'Mal'],
-    playerNames: {
-      '2': 'Isgalamido',
-      '3': 'Dono da Bola',
-      '4': 'Zeh',
-      '5': 'Oootsimo',
-      '6': 'Chessus',
-      '7': 'Assasinu Credi',
-      '8': 'Mal',
-    },
     kills: {
       Isgalamido: 22,
       'Dono da Bola': 0,
@@ -385,13 +283,6 @@ export const expectedOnFullFileProcessing = {
   game_15: {
     total_kills: 3,
     players: ['Zeh', 'Assasinu Credi', 'Dono da Bola', 'Fasano Again', 'Assasinu Credi'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Fasano Again',
-      '4': 'Zeh',
-      '5': 'Assasinu Credi',
-      '7': 'Assasinu Credi',
-    },
     kills: {
       Zeh: -3,
       'Assasinu Credi': 0,
@@ -405,13 +296,6 @@ export const expectedOnFullFileProcessing = {
   game_16: {
     total_kills: 0,
     players: ['Dono da Bola', 'Oootsimo', 'Isgalamido', 'Assasinu Credi', 'Zeh'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Oootsimo',
-      '4': 'Isgalamido',
-      '5': 'Assasinu Credi',
-      '6': 'Zeh',
-    },
     kills: {
       'Dono da Bola': 0,
       Oootsimo: 0,
@@ -424,14 +308,6 @@ export const expectedOnFullFileProcessing = {
   game_17: {
     total_kills: 13,
     players: ['Dono da Bola', 'Oootsimo', 'Isgalamido', 'Assasinu Credi', 'Zeh', 'UnnamedPlayer'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Oootsimo',
-      '4': 'Isgalamido',
-      '5': 'Assasinu Credi',
-      '6': 'Zeh',
-      '7': 'UnnamedPlayer',
-    },
     kills: {
       'Dono da Bola': -2,
       Oootsimo: -1,
@@ -450,14 +326,6 @@ export const expectedOnFullFileProcessing = {
   game_18: {
     total_kills: 7,
     players: ['Dono da Bola', 'Oootsimo', 'Isgalamido', 'Assasinu Credi', 'Zeh', 'Mal'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Oootsimo',
-      '4': 'Isgalamido',
-      '5': 'Assasinu Credi',
-      '6': 'Zeh',
-      '7': 'Mal',
-    },
     kills: {
       'Dono da Bola': 1,
       Oootsimo: 0,
@@ -476,14 +344,6 @@ export const expectedOnFullFileProcessing = {
   game_19: {
     total_kills: 95,
     players: ['Isgalamido', 'Oootsimo', 'Dono da Bola', 'Assasinu Credi', 'Zeh', 'Mal'],
-    playerNames: {
-      '2': 'Isgalamido',
-      '3': 'Oootsimo',
-      '4': 'Dono da Bola',
-      '5': 'Assasinu Credi',
-      '6': 'Zeh',
-      '7': 'Mal',
-    },
     kills: {
       Isgalamido: 12,
       Oootsimo: 10,
@@ -505,14 +365,6 @@ export const expectedOnFullFileProcessing = {
   game_20: {
     total_kills: 3,
     players: ['Isgalamido', 'Oootsimo', 'Dono da Bola', 'Assasinu Credi', 'Zeh', 'Mal'],
-    playerNames: {
-      '2': 'Isgalamido',
-      '3': 'Oootsimo',
-      '4': 'Dono da Bola',
-      '5': 'Assasinu Credi',
-      '6': 'Zeh',
-      '7': 'Mal',
-    },
     kills: {
       Isgalamido: 0,
       Oootsimo: 1,
@@ -529,14 +381,6 @@ export const expectedOnFullFileProcessing = {
   game_21: {
     total_kills: 131,
     players: ['Isgalamido', 'Oootsimo', 'Dono da Bola', 'Assasinu Credi', 'Zeh', 'Mal'],
-    playerNames: {
-      '2': 'Isgalamido',
-      '3': 'Oootsimo',
-      '4': 'Dono da Bola',
-      '5': 'Assasinu Credi',
-      '6': 'Zeh',
-      '7': 'Mal',
-    },
     kills: {
       Isgalamido: 17,
       Oootsimo: 20,
@@ -561,9 +405,6 @@ export const expectedOnUserSelfDestruct = {
   game_1: {
     total_kills: 3,
     players: ['Isgalamido'],
-    playerNames: {
-      '2': 'Isgalamido',
-    },
     kills: {
       Isgalamido: -3,
     },
@@ -578,10 +419,6 @@ export const expectedWhenUserNameIsChanged = {
   game_1: {
     total_kills: 11,
     players: ['Isgalamido', 'Dono da Bola'],
-    playerNames: {
-      '2': 'Isgalamido',
-      '3': 'Dono da Bola',
-    },
     kills: {
       Isgalamido: -9,
       'Dono da Bola': 0,
@@ -598,11 +435,6 @@ export const expectedTheFileContainsOneGame = {
   game_1: {
     total_kills: 4,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-    },
     kills: {
       'Dono da Bola': -1,
       Isgalamido: 1,
@@ -620,12 +452,6 @@ export const expectedFileWithOneGameAnotherRound = {
   game_1: {
     total_kills: 105,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh', 'Assasinu Credi'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-      '5': 'Assasinu Credi',
-    },
     kills: {
       'Dono da Bola': 5,
       Isgalamido: 19,
@@ -648,11 +474,6 @@ export const expectedTheFileContainsTwoGames = {
   game_1: {
     total_kills: 4,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-    },
     kills: {
       'Dono da Bola': -1,
       Isgalamido: 1,
@@ -667,12 +488,6 @@ export const expectedTheFileContainsTwoGames = {
   game_2: {
     total_kills: 105,
     players: ['Dono da Bola', 'Isgalamido', 'Zeh', 'Assasinu Credi'],
-    playerNames: {
-      '2': 'Dono da Bola',
-      '3': 'Isgalamido',
-      '4': 'Zeh',
-      '5': 'Assasinu Credi',
-    },
     kills: {
       'Dono da Bola': 5,
       Isgalamido: 19,

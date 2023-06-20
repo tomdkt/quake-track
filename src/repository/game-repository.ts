@@ -5,6 +5,7 @@ import { GameStats } from '../interfaces/game-stats';
 export class GameRepository {
   private gameCounter = 0;
   private gameStats: GameStats = {};
+  private playerNames: Record<string, string> = {};
 
   public incrementGameCounter(): void {
     this.gameCounter += 1;
@@ -41,16 +42,16 @@ export class GameRepository {
   }
 
   public getPlayerName(id: string): string {
-    return this.getPlayerStats().playerNames[id];
+    return this.playerNames[id];
   }
 
   public doesPlayerNotExist(id: string): boolean {
-    return !this.getPlayerStats().playerNames[id];
+    return !this.playerNames[id];
   }
 
   public addNewPlayer(id: string, name: string): void {
     this.getPlayerStats().players.push(name);
-    this.getPlayerStats().playerNames[id] = name;
+    this.playerNames[id] = name;
     this.getPlayerStats().kills[name] = 0;
   }
 
@@ -64,6 +65,7 @@ export class GameRepository {
 
   public initNewGame(): void {
     this.incrementGameCounter();
+    this.playerNames = {};
     this.gameStats[`game_${this.gameCounter}`] = this.initializePlayerStats();
   }
 
@@ -71,7 +73,6 @@ export class GameRepository {
     return {
       total_kills: 0,
       players: [],
-      playerNames: {} as Record<string, string>,
       kills: {} as Record<string, number>,
       kills_by_means: {} as Record<DeathCauses, number>,
     };
