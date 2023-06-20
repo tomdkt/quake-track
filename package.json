@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.5",
     "@types/chai-as-promised": "^7.1.5",
+    "@types/faker": "^5.5.3",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.3.1",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
@@ -31,6 +32,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-sonarjs": "^0.7.0",
     "eslint-plugin-unused-imports": "^1.1.1",
+    "faker": "^5.5.3",
     "lint-staged": "^10.2.11",
     "mocha": "^10.2.0",
     "prettier": "^2.8.8",

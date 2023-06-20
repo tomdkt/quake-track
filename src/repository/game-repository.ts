@@ -75,6 +75,10 @@ export class GameRepository {
     this.gameStats[`game_${this.gameCounter}`] = this.initializePlayerStats();
   }
 
+  public getPlayerNames(): Record<string, string> {
+    return this.playerNames;
+  }
+
   private initializePlayerStats(): PlayerStats {
     return {
       total_kills: 0,
