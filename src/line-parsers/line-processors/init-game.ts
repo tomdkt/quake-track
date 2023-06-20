@@ -10,7 +10,7 @@ export class InitGame extends LineProcessor {
     this.gameRepository = gameRepository;
   }
 
-  public handle(line: string): void {
+  public handle(line: Readonly<string>): void {
     assert(line);
     this.gameRepository.initNewGame();
   }
