@@ -10,15 +10,6 @@ QuakeTrack is a project aimed at parsing Quake log files to provide enhanced gam
 ```json
 {
   "total_kills": 29,
-  "players":
-  [
-    "Fasano Again",
-    "Isgalamido",
-    "Zeh",
-    "Dono da Bola",
-    "UnnamedPlayer",
-    "Assasinu Credi"
-  ],
   "kills":
   {
     "Fasano Again": 8,
