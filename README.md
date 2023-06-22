@@ -4,7 +4,14 @@ QuakeTrack is a project aimed at parsing Quake log files to provide enhanced gam
 
 ## Running the app
 1. Command to install: `npm i`
-2. Start app: `npm run start -- ./src/assets/qgames.log :tada:`
+2. Initiate app processing for single file: `npm run start -- ./src/assets/qgames.log` :tada:
+
+
+## Testing
+
+```bash
+npm run test
+```
 
 ## output
 ```json
@@ -75,12 +82,6 @@ classDiagram
 
 ```
 
-
-## Testing
-
-```bash
-npm run test
-```
 
 ## Linting
 
